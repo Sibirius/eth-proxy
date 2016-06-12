@@ -42,6 +42,7 @@ class Root(Resource):
             if self.getWorkCacheTimeout["work"]==self.job_registry.jobs.params[0] and int(time.time())-self.getWorkCacheTimeout["time"]>=self.job_registry.coinTimeout:
                 log.warning('Job timeout. Proxy is waiting for an updated job. Please restart proxy!')
                 response = self.json_error(data.get('id', 0), "Job timeout. Proxy is waiting for an updated job...")
+                exit(1)
             else:
                 if self.getWorkCacheTimeout["work"]!=self.job_registry.jobs.params[0]:
                     self.getWorkCacheTimeout = {"work":self.job_registry.jobs.params[0],"time":int(time.time())}
